@@ -1,0 +1,33 @@
+number_of_conv: 2
+number_of_pool: 2
+number_of_lrn: 2
+fixed_point_integer: 24
+fixed_point_exponent: 8
+sliding_window {
+  number_of_sliding_windows: 1
+  required_number_of_multipliers: 25
+}
+sliding_window {
+  number_of_sliding_windows: 1
+  required_number_of_multipliers: 20
+}
+conv {
+  image_dimension: 24
+  kernel_dimension: 5
+  multipliers: 25
+}
+conv {
+  image_dimension: 8
+  kernel_dimension: 5
+  multipliers: 20
+}
+pool {
+  stride: 2
+  filters: 5
+  image_dimension: 24
+}
+pool {
+  stride: 2
+  filters: 4
+  image_dimension: 8
+}

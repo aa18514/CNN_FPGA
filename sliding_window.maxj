@@ -1,0 +1,89 @@
+package sliding_window; 
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Counter;
+import fifo.fifo;
+import data.data;
+public class sliding_window extends Kernel
+{
+	public sliding_window(KernelParameters parameters, 
+			      int inputFeatures, 
+			      int image_dimension, 
+			      int kernel_dimension, 
+			      int channels, 
+		              int L, 
+			      int fold, 
+			      int depth, 
+			      int filter, 
+			      int total_filter, 
+			      DFEType T, 
+			      int pcie){
+		super(parameters); 
+	
+		fifo[] inputs = new fifo[L];
+ 
+		int fifo_size = inputFeatures * image_dimension * kernel_dimension; 
+	
+		DFEType data_type; 
+	
+		if(pcie == 0)
+			data_type = dfeFloat(8, 24); 
+		else
+			data_type = T;
+		
+		data_type = dfeFloat(8, 24); 
+		for(int i = 0; i < L; i++)
+		{
+			inputs[i] = new fifo(this, fifo_size, data_type);  
+		}
+			
+		Count.Params individual_image = control.count.makeParams(32)
+						.withMax((image_dimension * inputFeatures * kernel_dimension) + ( (total_filter/filter) * channels *  fold  * image_dimension * image_dimension)); 
+		Counter p2 = control.count.makeCounter(individual_image); 
+		DFEVar count = p2.getCount(); 
+	
+		Count.Params paramsFive = control.count.makeParams(16)
+							.withMax(channels)
+							.withEnable(count > (image_dimension * inputFeatures * kernel_dimension - 1)); 
+		Counter counterFive = control.count.makeCounter(paramsFive); 
+		
+		Count.Params paramsTwo = control.count.makeParams(16) 
+							.withMax(total_filter/filter)
+							.withEnable(counterFive.getWrap()); 
+		Counter counterTwo = control.count.makeCounter(paramsTwo); 
+
+		
+		Count.Params paramsOne = control.count.makeParams(16)
+							.withMax(fold)
+							.withEnable(counterTwo.getWrap()); 
+		Counter counterOne = control.count.makeCounter(paramsOne); 
+
+		DFEVar Channels = counterFive.getCount(); 
+		DFEVar sliding_window = counterOne.getCount(); 
+		DFEVar weights = counterTwo.getCount(); 			  
+		DFEVectorType<DFEVar> in = new DFEVectorType<DFEVar> (data_type, 1);
+		DFEVectorType<DFEVar> out = new DFEVectorType<DFEVar> (data_type, depth); 
+		data[] x = new data[L]; 
+		data[] Sliding_window = new data[L]; 
+		DFEVar enable = (count < fifo_size) | 
+						(count < fifo_size + ((total_filter/filter) * channels * fold * (image_dimension - kernel_dimension) * image_dimension) & Channels === 0 & weights < inputFeatures & sliding_window === 0); 
+		
+		DFEVar read_data = (Channels === 0)  & (sliding_window === 0) & (weights < inputFeatures) & (count > fifo_size - 1); 
+		for(int i = 0; i < L; i++){
+			Sliding_window[i] = new data(this, depth, dfeFloat(8, 24)); 
+			x[i] = new data(this, 1, data_type); 
+			x[i].x = io.input("x" + i + "1", in, enable); 
+			inputs[i].update_data(enable, x[i].x[0], fifo_size); 
+			Sliding_window[i].zero_pad(kernel_dimension * kernel_dimension, depth); 
+			Sliding_window[i].update_data(inputs[i].data, fifo_size, image_dimension, kernel_dimension);  
+			io.output("y" + i + 1, Sliding_window[i].x, out, read_data); 
+		}
+	}	
+};

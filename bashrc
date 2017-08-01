@@ -1,0 +1,1 @@
+export LM_LICENSE_FILE

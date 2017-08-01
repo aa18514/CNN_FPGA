@@ -1,0 +1,13 @@
+syntax = "proto2"; 
+package parameters; 
+option java_package = "com.parameters";
+option java_outer_classname = "Parameters"; 
+
+message parameters { 
+	required uint32 image_dimension = 1;
+	required uint32 kernel_dimension = 2;  
+}
+
+message layer { 
+	repeated parameters p = 1; 
+}

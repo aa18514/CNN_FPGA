@@ -1,0 +1,18 @@
+package utilities;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory;
+public class tuple{
+	private DFEVar x; 
+	private DFEVar y; 
+        Memory<DFEVar> mem; 
+	public tuple(DFEVar _x,  DFEVar _y){
+		x = _x; 
+		y = _y; 
+	}
+	public DFEVar get_x(){
+		return x; 
+	}
+	public DFEVar get_y(){
+		return y; 
+	}		
+};

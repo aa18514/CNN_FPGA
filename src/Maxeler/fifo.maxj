@@ -1,0 +1,27 @@
+package fifo; 
+
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelLib; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+
+public class fifo extends KernelLib{
+	public DFEVector<DFEVar> data;
+	DFEType T_class; 
+ 
+	public fifo(KernelLib Owner, int depth, DFEType T){ 
+		super(Owner);
+		T_class = T;  
+		data = new DFEVectorType<DFEVar>(T, depth).newInstance(this); 
+	}
+	
+	public void update_data(DFEVar enable, DFEVar Data, int size){
+		data[0] <== enable ? Data : stream.offset(data[0], -1); 
+		for(int i = 1; i < size; i++){
+			data[i] <== enable ? stream.offset(data[i-1], -1) : stream.offset(data[i], -1); 
+		}
+	}
+};

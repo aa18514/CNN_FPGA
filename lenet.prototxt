@@ -1,0 +1,80 @@
+frequency: 150
+number_of_conv: 2
+number_of_pool: 2
+number_of_lrn: 2
+bit_stream: 0 
+ReLu: 1
+fixed_point_integer: 24
+fixed_point_exponent: 8
+frequency: 150
+links: 2 
+
+sliding_window {
+  image_dimension: 28
+  kernel_dimension: 5
+  input_features: 1 
+  output_features: 20
+  multipliers: 25
+  fold: 1
+  filters: 5 
+  required_number_of_weights: 25
+  channels: 1
+}
+
+sliding_window {
+  image_dimension: 12
+  kernel_dimension: 5 
+  input_features: 20
+  output_features: 50
+  multipliers: 20 
+  fold: 2
+  filters: 1
+  required_number_of_multipliers: 20
+  channels: 50
+}
+
+conv {
+  image_dimension: 28
+  kernel_dimension: 5
+  multipliers: 25
+  fold: 1
+  filters: 5
+  inputFeatures: 1
+}
+
+conv {
+  image_dimension: 12
+  kernel_dimension: 5
+  multipliers: 20
+  fold: 2
+  filters: 1
+  inputFeatures: 20
+}
+
+pool {
+  inputFeatures: 1
+  outputFeatures: 20 
+  stride: 2
+  filters: 5
+  image_dimension: 28
+}
+
+pool {
+  inputFeatures: 20 
+  outputFeatures: 50
+  stride: 2
+  filters: 1
+  image_dimension: 12
+}
+
+FC { 
+   inputFeatures:  800 
+   outputFeatures: 500 
+   mult: 10 
+}
+
+FC { 
+   inputFeatures: 500 
+   outputFeatures: 10 
+   mult: 10
+}

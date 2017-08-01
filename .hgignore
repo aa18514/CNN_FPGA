@@ -1,0 +1,45 @@
+# not in version control
+
+syntax: glob
+
+# editor temp files
+*~
+*.swp
+
+# output files
+myappHostSimBuilder
+myapp_pkg
+myappHWBuilder
+*.class
+*.max
+
+timingreport/*
+maxfiles/*
+objects/*
+obj/*
+binaries/*
+bin/*
+scratch/*
+
+
+
+SimBuilder/*
+HW/include/*
+
+# object files
+*.o
+
+# other compiler output
+*.d
+
+
+# executables
+myapp
+myapp_sim
+myapp_SIM
+
+# backup directory
+bak/*
+
+# archive
+max_template.tgz
