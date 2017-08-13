@@ -29,7 +29,7 @@ public class maxpooling extends Kernel
 			DFEVar a = (in[i] > out1[i]) | (in[i] === out1[i]) ? in[i] : out1[i]; 
 			DFEVar b = (out2[i] > a) | (out2[i] === a) ? out2[i] : a; 
 			DFEVar c = (out3[i] > b) | (out3[i] === b) ? out3[i] : b; 
-			DFEVar d = (c > 0) ? c : constant.var(0); 
+			DFEVar d = (c < 0) ? constant.var(0) : c;
 			result[i] <== d; 
 		} 
 		return result;  

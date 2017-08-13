@@ -53,7 +53,7 @@ class convolutionManager extends CustomManager{
 	int fixed_point = 8; 
 	int fractional_part = 24; 
 	DFEType data_type = Kernel.dfeFix(fixed_point, fractional_part, SignMode.TWOSCOMPLEMENT); 
-	
+ 	DFEType convolution_data_type = Kernel.dfeFix(64, 0, SignMode.TWOSCOMPLEMENT); 	
 	int[][] conv = {{4, 1}, {50 * 40, 50}}; 
 	InterfaceParam size = ei.addParam("size_bytes", CPUTypes.INT32); 
 	InterfaceParam start = ei.addParam("start_bytes", CPUTypes.INT32); 
@@ -69,7 +69,7 @@ class convolutionManager extends CustomManager{
 	
 	for(int i = 0; i < params.parameters[1]; i++)
 	{
-		k[i] = m.addKernel(new convolutionKernel(m.makeKernelParameters("convolutionKernel" + i + "0"), conv[i], params.conv, data_type, links, i)); 
+		k[i] = m.addKernel(new convolutionKernel(m.makeKernelParameters("convolutionKernel" + i + "0"), conv[i], params.conv, data_type, links, i, convolution_data_type)); 
 		ml[i] = m.addKernel(new maxpooling(m.makeKernelParameters("maxpooling" + i + "0"), params.max_pool[1 + 5*i]/params.max_pool[3 + 5*i], params.max_pool[4 + 5*i], links, params.max_pool[3 + 5*i], data_type)); 
 		
 		sl[i] = m.addKernel(new sliding_window(m.makeKernelParameters("sliding_window" + i + "0"), params.sliding_window[2 + 9*i], params.sliding_window[0 + 9 * i], params.sliding_window[1 + 9 * i], params.sliding_window[8 + 9 * i] ,links, params.sliding_window[5 + 9 * i], params.sliding_window[4 + 9 * i] * params.sliding_window[5 + 9 * i], params.sliding_window[6 + 9 * i],20, data_type, i));
