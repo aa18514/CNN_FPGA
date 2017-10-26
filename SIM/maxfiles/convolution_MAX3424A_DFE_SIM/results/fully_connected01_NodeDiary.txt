@@ -1,0 +1,1 @@
+../scratch/fully_connected01_NodeDiary.txt

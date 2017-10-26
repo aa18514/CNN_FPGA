@@ -38,12 +38,15 @@ int main()
 	first_test_dataset.pretty_print(1);
         network_parameters LeNet("/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/conv1.txt", 
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/conv2.txt",
-				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/bias1.txt", 
-				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/bias2.txt",
+				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/conv_bias1.txt", 
+				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/conv_bias2.txt",
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/test.txt",
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/final.txt", 
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/final_bias.txt",
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/fully_connected1_bias.txt");  
+	for(int i = 0; i <50; i++){
+		cout << LeNet.bias2[i] << endl;
+	}
 	float* filter = new float[20];
 	float* filter2 = new float[20]; 
 	for(int i = 0; i < 5; i++){
@@ -51,7 +54,7 @@ int main()
 	} 
 	load_normalized_feature_maps(256, first_test_dataset._dataset);
 	cout << "Running on DFE\n";
-	perform_convolution_and_maxpooling(filter, filter2, LeNet.romcontents, LeNet.romcontents2, LeNet.bias,  pointers[0], pointers[1], LeNet.fully_connected, LeNet.fully_connected2, LeNet.final_bias, LeNet.fully_connected_bias); 	  
+	perform_convolution_and_maxpooling(filter, filter2, LeNet.romcontents, LeNet.romcontents2, LeNet.bias, LeNet.bias2, pointers[0], pointers[1], LeNet.fully_connected, LeNet.fully_connected2, LeNet.final_bias, LeNet.fully_connected_bias); 	  
 	display_results(filter); 
 	return 0;
 } 

@@ -1,0 +1,90 @@
+
+Pre-schedule statistics
+
+
+Total nodes: 232
+
+Node class;Type;Length;Num
+NodeAdd;{HWOffsetFix:16, 0, UNSIGNED};0;10
+NodeAdd;{HWOffsetFix:20, 1, UNSIGNED};0;10
+NodeAdd;{HWOffsetFix:21, 1, UNSIGNED};0;10
+NodeAdd;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;22
+NodeAnd;{HWOffsetFix:1, 0, UNSIGNED};0;5
+NodeCast;{HWFloat:8, 24};0;2
+NodeCast;{HWOffsetFix:16, 0, UNSIGNED};0;10
+NodeCast;{HWOffsetFix:4, 0, UNSIGNED};0;2
+NodeCast;{HWOffsetFix:9, 0, UNSIGNED};0;10
+NodeConstantDouble;HWUntypedConst;0;14
+NodeConstantRawBits;{HWOffsetFix:1, 0, UNSIGNED};0;1
+NodeConstantRawBits;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;2
+NodeConstantRawBits;{HWOffsetFix:49, 0, UNSIGNED};0;2
+NodeCounterV1;{HWOffsetFix:16, 0, UNSIGNED};0;2
+NodeCounterV1;{HWOffsetFix:48, 0, UNSIGNED};0;2
+NodeEq;{HWOffsetFix:1, 0, UNSIGNED};0;6
+NodeInput;{HWRawBits:320};0;2
+NodeInputMappedReg;{HWOffsetFix:1, 0, UNSIGNED};0;4
+NodeInputMappedReg;{HWOffsetFix:48, 0, UNSIGNED};0;1
+NodeLt;{HWOffsetFix:1, 0, UNSIGNED};0;2
+NodeMappedRom;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};10;1
+NodeMappedRom;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};500;10
+NodeMul;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;20
+NodeMux;{HWFloat:8, 24};0;2
+NodeMux;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;2
+NodeNot;{HWOffsetFix:1, 0, UNSIGNED};0;4
+NodeOr;{HWOffsetFix:1, 0, UNSIGNED};0;1
+NodeReinterpret;{HWOffsetFix:16, 1, UNSIGNED};0;10
+NodeReinterpret;{HWOffsetFix:16, 4, UNSIGNED};0;10
+NodeReinterpret;{HWOffsetFix:16, 5, UNSIGNED};0;10
+NodeReinterpret;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;20
+NodeSlice;{HWRawBits:32};0;20
+NodeStreamOffset;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;2
+NodeStreamOffset;{HWOffsetFix:48, 0, UNSIGNED};0;1
+
+Final statistics
+
+
+Total nodes: 246
+
+Node class;Type;Length;Num
+NodeAdd;{HWOffsetFix:16, 0, UNSIGNED};0;10
+NodeAdd;{HWOffsetFix:20, 1, UNSIGNED};0;10
+NodeAdd;{HWOffsetFix:21, 1, UNSIGNED};0;10
+NodeAdd;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;22
+NodeAnd;{HWOffsetFix:1, 0, UNSIGNED};0;5
+NodeCast;{HWFloat:8, 24};0;2
+NodeCast;{HWOffsetFix:16, 0, UNSIGNED};0;10
+NodeCast;{HWOffsetFix:4, 0, UNSIGNED};0;2
+NodeCast;{HWOffsetFix:9, 0, UNSIGNED};0;10
+NodeConstantDouble;HWUntypedConst;0;14
+NodeConstantRawBits;{HWOffsetFix:1, 0, UNSIGNED};0;1
+NodeConstantRawBits;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;2
+NodeConstantRawBits;{HWOffsetFix:49, 0, UNSIGNED};0;2
+NodeCounterV1;{HWOffsetFix:16, 0, UNSIGNED};0;2
+NodeCounterV1;{HWOffsetFix:48, 0, UNSIGNED};0;2
+NodeEq;{HWOffsetFix:1, 0, UNSIGNED};0;6
+NodeFIFO;{HWFloat:8, 24};2;2
+NodeFIFO;{HWOffsetFix:1, 0, UNSIGNED};1;1
+NodeFIFO;{HWOffsetFix:1, 0, UNSIGNED};23;1
+NodeFIFO;{HWOffsetFix:1, 0, UNSIGNED};3;2
+NodeFIFO;{HWOffsetFix:16, 0, UNSIGNED};1;2
+NodeFIFO;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};2;2
+NodeFIFO;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};8;2
+NodeFIFO;{HWOffsetFix:4, 0, UNSIGNED};14;2
+NodeInput;{HWRawBits:320};0;2
+NodeInputMappedReg;{HWOffsetFix:1, 0, UNSIGNED};0;4
+NodeInputMappedReg;{HWOffsetFix:48, 0, UNSIGNED};0;1
+NodeLt;{HWOffsetFix:1, 0, UNSIGNED};0;2
+NodeMappedRom;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};10;1
+NodeMappedRom;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};500;10
+NodeMul;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;20
+NodeMux;{HWFloat:8, 24};0;2
+NodeMux;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;2
+NodeNot;{HWOffsetFix:1, 0, UNSIGNED};0;4
+NodeOr;{HWOffsetFix:1, 0, UNSIGNED};0;1
+NodeReinterpret;{HWOffsetFix:16, 1, UNSIGNED};0;10
+NodeReinterpret;{HWOffsetFix:16, 4, UNSIGNED};0;10
+NodeReinterpret;{HWOffsetFix:16, 5, UNSIGNED};0;10
+NodeReinterpret;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;20
+NodeSlice;{HWRawBits:32};0;20
+NodeStreamOffset;{HWOffsetFix:32, -24, TWOSCOMPLEMENT};0;2
+NodeStreamOffset;{HWOffsetFix:48, 0, UNSIGNED};0;1

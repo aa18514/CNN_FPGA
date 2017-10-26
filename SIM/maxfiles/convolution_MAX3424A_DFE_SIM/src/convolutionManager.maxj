@@ -1,0 +1,148 @@
+package convolution; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelConfiguration;
+import com.maxeler.maxcompiler.v2.build.EngineParameters; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes; 
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;
+import com.maxeler.maxcompiler.v2.managers.custom.stdlib.MaxRingBidirectionalStream;
+import com.maxeler.maxcompiler.v2.managers.custom.CustomManager;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager; 
+import com.maxeler.maxcompiler.v2.managers.standard.Manager.IOType;
+import com.maxeler.maxcompiler.v2.managers.standard.IOLink;
+import com.maxeler.maxcompiler.v2.managers.BuildConfig;
+import com.maxeler.maxcompiler.v2.managers.BuildConfig.Effort;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager.MemAccessPattern;
+import com.maxeler.maxcompiler.v2.managers.custom.stdlib.MemoryControlGroup;
+import com.maxeler.maxcompiler.v2.managers.custom.stdlib.MemoryControlGroup;
+import com.maxeler.maxcompiler.v2.managers.custom.DFELink;
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.KernelBlock;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface.Direction;
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import java.io.*; 
+import java.util.*; 
+import convolution.convolutionKernel;
+import secondlayer.maxpooling;
+import Net.network_parameters;
+import sliding_window.sliding_window;
+import block.mem_block;
+import fully_connected.fully_connected;
+import java.util.Scanner; 
+
+class convolutionManager extends CustomManager{ 
+    private static final int number_of_images = 1;
+    private static final CPUTypes TYPE = CPUTypes.INT32;     
+    private static int links = 2; 
+    
+   public convolutionManager(EngineParameters engineParameters){
+	super(engineParameters);			
+    	network_parameters params = new network_parameters(); 
+	params.readFromFile(); 
+	config.setDefaultStreamClockFrequency(params.parameters[0]); 
+   }
+	
+  
+    private static EngineInterface interfaceDefault(CustomManager m){
+	EngineInterface ei = new EngineInterface();
+	network_parameters params = new network_parameters();
+	params.readFromFile();
+	
+	int fixed_point = 8; 
+	int fractional_part = 24; 
+	DFEType data_type = Kernel.dfeFix(fixed_point, fractional_part, SignMode.TWOSCOMPLEMENT); 
+ 	DFEType convolution_data_type = Kernel.dfeFix(64, 0, SignMode.TWOSCOMPLEMENT); 	
+	int[][] conv = {{4, 1}, {50 * 40, 50}}; 
+	InterfaceParam size = ei.addParam("size_bytes", CPUTypes.INT32); 
+	InterfaceParam start = ei.addParam("start_bytes", CPUTypes.INT32); 
+	InterfaceParam sizeInBytes = size * 4; 
+     
+	int[] bitstream = new int[params.parameters[1] - 1];
+	bitstream[0] = 0; 	
+	
+	KernelBlock[] sl = new KernelBlock[params.parameters[1]]; 
+	KernelBlock[] ml = new KernelBlock[params.parameters[1]]; 
+	KernelBlock[] fl = new KernelBlock[params.parameters[1]]; 
+	KernelBlock[] k = new KernelBlock[params.parameters[1]]; 
+	
+	for(int i = 0; i < params.parameters[1]; i++)
+	{
+		k[i] = m.addKernel(new convolutionKernel(m.makeKernelParameters("convolutionKernel" + i + "0"), conv[i], params.conv, data_type, links, i, convolution_data_type)); 
+		ml[i] = m.addKernel(new maxpooling(m.makeKernelParameters("maxpooling" + i + "0"), params.max_pool[1 + 5*i]/params.max_pool[3 + 5*i], params.max_pool[4 + 5*i], links, params.max_pool[3 + 5*i], data_type)); 
+		
+		sl[i] = m.addKernel(new sliding_window(m.makeKernelParameters("sliding_window" + i + "0"), params.sliding_window[2 + 9*i], params.sliding_window[0 + 9 * i], params.sliding_window[1 + 9 * i], params.sliding_window[8 + 9 * i] ,links, params.sliding_window[5 + 9 * i], params.sliding_window[4 + 9 * i] * params.sliding_window[5 + 9 * i], params.sliding_window[6 + 9 * i],20, data_type, i));
+	
+		fl[i] = m.addKernel(new fully_connected(m.makeKernelParameters("fully_connected" + i + "1"), params.fully_connected[1 + 3*i], params.fully_connected[0 + 3*i]/params.fully_connected[2 + 3*i], links, i, data_type, params.fully_connected[2 + 3 * i]));  
+	}
+	
+	for(int i = 0; i < links; i++){
+		sl[0].getInput("x" + i + 1) <== m.addStreamFromCPU("x" + i + 1); 
+		m.addStreamToCPU("y" + i + 1) <== fl[params.parameters[1] - 1].getOutput("y" + i + 1); 
+	}
+	for(int i = 0; i < links; i++){
+		for(int j = 0; j < params.parameters[1]; j++){
+			k[j].getInput("x" + i + 1) <== sl[j].getOutput("y" + i + 1); 
+			ml[j].getInput("x" + i + 1) <== k[j].getOutput("y" + i + 1);
+		}
+	}
+	for(int i = 0; i < links; i++){
+		for(int j = 1; j < params.parameters[1]; j++){
+			sl[j].getInput("x" + i + 1) <==  ml[j-1].getOutput("y" + i + 1); 
+		}
+	}
+
+	for(int i = 0; i < links; i++){
+		fl[0].getInput("x" + i + 1) <== ml[1].getOutput("y" + i + 1); 
+		fl[1].getInput("x" + i + 1) <== fl[0].getOutput("y" + i + 1);
+	}
+	return ei; 
+    }
+    
+    
+    private static EngineInterface interfaceRead(String name, CustomManager m)
+    {
+	MemoryControlGroup read_controller = m.addMemoryControlGroup("read_controller", MemoryControlGroup.MemoryAccessPattern.LINEAR_1D);
+	m.addStreamToCPU("toCpu") <== m.addStreamFromOnCardMemory("dram_to_host",  read_controller); 
+	EngineInterface ei = new EngineInterface(name);  
+	InterfaceParam size = ei.addParam("size_bytes", CPUTypes.INT32); 
+        InterfaceParam start = ei.addParam("start_bytes", CPUTypes.INT32); 
+	InterfaceParam sizeInBytes = size * 4; 
+	ei.setLMemLinear("dram_to_host", start, sizeInBytes); 
+	ei.setStream("toCpu", TYPE, sizeInBytes); 
+	return ei; 
+    }
+    /*
+    private static EngineInterface second_layer(CustomManager m)
+    { 
+	second_layer = m.addKernel(new secondlayer(m.makeKernelParameters("second_layer"))); 
+	maxlayer = m.addKernel(new maxpooling(m.makeKernelParameters("maxpooling2"), 50, 8, 8)); 
+	sl = m.addKernel(new sliding_window(m.makeKernelParameters("sliding_window"))); 
+	EngineInterface ei = new EngineInterface("second_layer"); 
+	InterfaceParam size = ei.addParam("size_bytes", CPUTypes.INT32); 
+	InterfaceParam start = ei.addParam("start_bytes", CPUTypes.INT32); 
+	InterfaceParam sizeInBytes = size * 4; 
+	for(int i = 0; i < 2; i++){
+		sl.getInput("x" +i + 1) <== m.addStreamFromOnCardMemory("dram_to_kernel" + i, MemoryControlGroup.MemoryAccessPattern.LINEAR_1D);
+		second_layer.getInput("x" +i + 1) <== sl.getOutput("y" + i + "1"); 
+		maxlayer.getInput("x" + i + 1) <== second_layer.getOutput("y" +i + "1"); 
+		m.addStreamToCPU("x" + i + 1) <== maxlayer.getOutput("y" + i + "1"); 
+	}
+	return ei; 
+    }
+
+	*/
+    public static void main(String[] args) throws FileNotFoundException
+    {  
+
+	convolutionManager manager = new convolutionManager(new EngineParameters(args)); 
+        BuildConfig buildConfig = manager.getBuildConfig();  
+	EngineInterface i = interfaceDefault(manager); 
+        manager.createSLiCinterface(i); 
+	//manager.createSLiCinterface(interfaceReadDDR(manager));
+	buildConfig.setBuildEffort(Effort.VERY_HIGH);
+	buildConfig.setMPPRCostTableSearchRange(1, 4);
+	manager.build(); 
+   }
+}

@@ -1,0 +1,9 @@
+package block; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+public class mem_block{
+	public Memory<DFEVar> m;  
+	public mem_block(){
+		super(); 
+	}		
+}; 
