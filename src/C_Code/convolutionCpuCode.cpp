@@ -64,7 +64,7 @@ void load_normalized_feature_maps(int normalization_constant, float*** dataset){
 		for(int p = 0; p < 1; p++){
 			for(int i = 0; i < 28; i++){
 				for(int j = 0; j < 28; j++){
-					pointers[q][(28 * 28 * p) + (28 * i)  + j] = dataset[q + 2*p][i][j]/normalization_constant; 
+					pointers[q][(28 * 28 * p) + (28 * i)  + j] = dataset[q][i][j]/256;
 				}
 			}
 		}
