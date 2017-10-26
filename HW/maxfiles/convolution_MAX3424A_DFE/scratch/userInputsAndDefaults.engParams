@@ -1,0 +1,11 @@
+#user parameters:
+DFEModel=MAX3424A
+maxFileName=convolution
+target=DFE
+
+#default parameters:
+enableMPCX=false
+MPPRStartCT=1
+MPPREndCT=1
+MPPRThreads=1
+MPPRRetryThreshold=0

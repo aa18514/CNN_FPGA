@@ -1,0 +1,18 @@
+Thu Oct 26 21:05:59 BST 2017
+convolutionKernel00
+original
+convolutionKernel00_original.dot
+pre_dsp_extraction
+convolutionKernel00_pre_dsp_extraction.dot
+optimised
+convolutionKernel00_optimised.dot
+tapnfold_1
+convolutionKernel00_tapnfold_1.dot
+validated_fifos
+convolutionKernel00_validated_fifos.dot
+tapnfold_2
+convolutionKernel00_tapnfold_2.dot
+coalesced
+convolutionKernel00_coalesced.dot
+final
+convolutionKernel00_final.dot

@@ -1,0 +1,408 @@
+NodeCounterV1 Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0 {HWOffsetFix:16, 0, UNSIGNED} ID: 4
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:136)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(13) {HWOffsetFix:16, 0, UNSIGNED} 13 ID: 1811
+	FIFO(4) {HWOffsetFix:16, 0, UNSIGNED} 4 ID: 1713
+	FIFO(1) {HWOffsetFix:16, 0, UNSIGNED} 1 ID: 1810
+
+NodeCounterV1 Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0 {HWOffsetFix:16, 0, UNSIGNED} ID: 2
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:131)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(17) {HWOffsetFix:16, 0, UNSIGNED} 17 ID: 1809
+	FIFO(1) {HWOffsetFix:16, 0, UNSIGNED} 1 ID: 1719
+
+NodeSlice [799:768] {HWRawBits:32} ID: 67
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:522)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:164)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWRawBits:32} 5 ID: 1720
+
+NodeSlice [799:768] {HWRawBits:32} ID: 121
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:522)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:164)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWRawBits:32} 5 ID: 1788
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1391
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1722
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1367
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1735
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1343
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1748
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1319
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1761
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1295
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1774
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1403
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1790
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1379
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1794
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1355
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1798
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1331
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1802
+
+NodeStreamOffset stream offset: -5 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1307
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:103)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 3 ID: 1806
+
+NodeCounterV1 Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0 {HWOffsetFix:16, 0, UNSIGNED} ID: 6
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:141)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWOffsetFix:16, 0, UNSIGNED} 5 ID: 1712
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1231
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1721
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1234
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1724
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1133
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1734
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1136
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1737
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1035
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1747
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1038
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1750
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 937
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1760
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 940
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1763
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 839
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1773
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 842
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1776
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1280
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1789
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1283
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1792
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1182
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1793
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1185
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1796
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1084
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1797
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 1087
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1800
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 986
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1801
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 989
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1804
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 888
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:41)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:47)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1805
+
+NodeAdd + {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 891
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.add(DFEVar.java:876)
+convolution.convolutionKernel.adder2Tree(convolutionKernel.maxj:44)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:73)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 1808
+
+NodeAnd & {HWOffsetFix:1, 0, UNSIGNED} ID: 132
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:530)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:81)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(15) {HWOffsetFix:1, 0, UNSIGNED} 15 ID: 1723
+	FIFO(2) {HWOffsetFix:1, 0, UNSIGNED} 2 ID: 1812
+
+NodeCast {HWOffsetFix:2, 0, UNSIGNED} {HWOffsetFix:2, 0, UNSIGNED} ID: 788
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:64)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWOffsetFix:2, 0, UNSIGNED} 5 ID: 1718
+
+NodeCast {HWOffsetFix:2, 0, UNSIGNED} {HWOffsetFix:2, 0, UNSIGNED} ID: 656
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:64)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWOffsetFix:2, 0, UNSIGNED} 5 ID: 1733
+
+NodeCast {HWOffsetFix:2, 0, UNSIGNED} {HWOffsetFix:2, 0, UNSIGNED} ID: 524
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:64)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWOffsetFix:2, 0, UNSIGNED} 5 ID: 1746
+
+NodeCast {HWOffsetFix:2, 0, UNSIGNED} {HWOffsetFix:2, 0, UNSIGNED} ID: 392
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:64)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWOffsetFix:2, 0, UNSIGNED} 5 ID: 1759
+
+NodeCast {HWOffsetFix:2, 0, UNSIGNED} {HWOffsetFix:2, 0, UNSIGNED} ID: 260
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.get_kernel_position(convolutionKernel.maxj:64)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:94)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(5) {HWOffsetFix:2, 0, UNSIGNED} 5 ID: 1772
+
+NodeCast {HWOffsetFix:5, 0, UNSIGNED} {HWOffsetFix:5, 0, UNSIGNED} ID: 1291
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:100)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:5, 0, UNSIGNED} 1 ID: 1785
+
+NodeCast {HWOffsetFix:5, 0, UNSIGNED} {HWOffsetFix:5, 0, UNSIGNED} ID: 1303
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+convolution.convolutionKernel.convolve_image_with_kernels(convolutionKernel.maxj:100)
+convolution.convolutionKernel.<init>(convolutionKernel.maxj:182)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:5, 0, UNSIGNED} 1 ID: 1786
+

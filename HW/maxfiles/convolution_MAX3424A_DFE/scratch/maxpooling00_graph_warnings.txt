@@ -1,0 +1,56 @@
+*** After kernel graph-pass 'Init Graph' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	
+*** After kernel graph-pass 'Init Graph' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	
+*** After kernel graph-pass 'OptimiseNodesPass' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	
+*** After kernel graph-pass 'ScheduleApplier' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	
+*** After kernel graph-pass 'TapFIFOsPass' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	
+*** After kernel graph-pass 'FIFOCoalesceRespectingPlacementPass' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	
+*** After kernel graph-pass 'RemoveUntypedConstants' ***
+node "Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0" (ID 2) has unconnected outputs: [count]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+	secondlayer.maxpooling.<init>(maxpooling.maxj:43)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	

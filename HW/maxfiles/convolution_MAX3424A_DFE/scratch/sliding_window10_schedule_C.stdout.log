@@ -1,0 +1,50 @@
+Welcome to the CBC MILP Solver 
+Version: 2.8.9 
+Build Date: Nov 24 2015 
+
+command line - /vol/cc/opt/maxeler/maxcompiler-2015.2/bin/cbc sliding_window10_schedule_C.mps.gz -threads 4 -solve -printi csv -solu sliding_window10_schedule_C.csv (default strategy 1)
+At line 1 NAME           CxSchedule
+At line 2 ROWS
+At line 24447 COLUMNS
+At line 59870 RHS
+At line 72093 BOUNDS
+At line 86826 ENDATA
+Problem CxSchedule has 24443 rows, 14732 columns and 61105 elements
+Coin0008I CxSchedule read with 0 errors
+threads was changed from 0 to 4
+Continuous objective value is 36 - 5.33 seconds
+Cgl0003I 0 fixed, 14751 tightened bounds, 0 strengthened rows, 0 substitutions
+Cgl0003I 0 fixed, 34 tightened bounds, 0 strengthened rows, 0 substitutions
+Cgl0003I 0 fixed, 20 tightened bounds, 0 strengthened rows, 0 substitutions
+Cgl0003I 0 fixed, 7 tightened bounds, 0 strengthened rows, 0 substitutions
+Cgl0003I 0 fixed, 1 tightened bounds, 0 strengthened rows, 0 substitutions
+Cgl0004I processed model has 24443 rows, 14728 columns (14728 integer) and 61105 elements
+Cutoff increment increased from 1e-05 to 0.9999
+Cbc0012I Integer solution of 36 found by DiveCoefficient after 0 iterations and 0 nodes (5.89 seconds)
+Cbc0030I Thread 0 used 0 times,  waiting to start 0.10895109, 0 cpu time, 0 locks, 0 locked, 0 waiting for locks
+Cbc0030I Thread 1 used 0 times,  waiting to start 0.085855246, 0 cpu time, 0 locks, 0 locked, 0 waiting for locks
+Cbc0030I Thread 2 used 0 times,  waiting to start 0.062616825, 0 cpu time, 0 locks, 0 locked, 0 waiting for locks
+Cbc0030I Thread 3 used 0 times,  waiting to start 0.039381742, 0 cpu time, 0 locks, 0 locked, 0 waiting for locks
+Cbc0030I Main thread 0 waiting for threads,  1 locks, 1.1205673e-05 locked, 4.7683716e-07 waiting for locks
+Cbc0001I Search completed - best objective 36, took 0 iterations and 0 nodes (5.99 seconds)
+Cbc0035I Maximum depth 0, 0 variables fixed on reduced cost
+Cuts at root node changed objective from 36 to 36
+Probing was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+Gomory was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+Knapsack was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+Clique was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+MixedIntegerRounding2 was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+FlowCover was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+TwoMirCuts was tried 0 times and created 0 cuts of which 0 were active after adding rounds of cuts (0.000 seconds)
+
+Result - Optimal solution found
+
+Objective value:                36.00000000
+Enumerated nodes:               0
+Total iterations:               0
+Time (CPU seconds):             6.26
+Time (Wallclock seconds):       6.80
+
+Option for printingOptions changed from normal to csv
+Total time (CPU seconds):       6.34   (Wallclock seconds):       6.90
+

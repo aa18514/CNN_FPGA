@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ManagerGraph version="2015.2" design_name="Manager_convolution" compilation_phase="Original" hardwareBuild="false">
+	<Node id="9" instanceName="x01" type="InputFlexibleClock">
+		<Output clock="STREAM" name="x01" type="PULL el=1 ael=8" width="128">
+			<Stream name="Stream_10" sink="2" />
+		</Output>
+	</Node>
+	<Node id="15" instanceName="x11" type="InputFlexibleClock">
+		<Output clock="STREAM" name="x11" type="PULL el=1 ael=8" width="128">
+			<Stream name="Stream_16" sink="2" />
+		</Output>
+	</Node>
+	<Node id="2" instanceName="sliding_window00" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="32">
+			<Stream name="Stream_8" source="9" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="32">
+			<Stream name="Stream_14" source="15" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="800">
+			<Stream name="Stream_21" sink="0" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="800">
+			<Stream name="Stream_29" sink="0" />
+		</Output>
+	</Node>
+	<Node id="0" instanceName="convolutionKernel00" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="800">
+			<Stream name="Stream_20" source="2" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="800">
+			<Stream name="Stream_28" source="2" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="160">
+			<Stream name="Stream_23" sink="1" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="160">
+			<Stream name="Stream_31" sink="1" />
+		</Output>
+	</Node>
+	<Node id="1" instanceName="maxpooling00" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="160">
+			<Stream name="Stream_22" source="0" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="160">
+			<Stream name="Stream_30" source="0" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="160">
+			<Stream name="Stream_37" sink="6" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="160">
+			<Stream name="Stream_39" sink="6" />
+		</Output>
+	</Node>
+	<Node id="6" instanceName="sliding_window10" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="32">
+			<Stream name="Stream_36" source="1" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="32">
+			<Stream name="Stream_38" source="1" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="1280">
+			<Stream name="Stream_25" sink="4" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="1280">
+			<Stream name="Stream_33" sink="4" />
+		</Output>
+	</Node>
+	<Node id="4" instanceName="convolutionKernel10" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="1280">
+			<Stream name="Stream_24" source="6" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="1280">
+			<Stream name="Stream_32" source="6" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="32">
+			<Stream name="Stream_27" sink="5" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="32">
+			<Stream name="Stream_35" sink="5" />
+		</Output>
+	</Node>
+	<Node id="5" instanceName="maxpooling10" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="32">
+			<Stream name="Stream_26" source="4" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="32">
+			<Stream name="Stream_34" source="4" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="32">
+			<Stream name="Stream_41" sink="3" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="32">
+			<Stream name="Stream_45" sink="3" />
+		</Output>
+	</Node>
+	<Node id="3" instanceName="fully_connected01" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="320">
+			<Stream name="Stream_40" source="5" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="320">
+			<Stream name="Stream_44" source="5" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="32">
+			<Stream name="Stream_43" sink="7" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="32">
+			<Stream name="Stream_47" sink="7" />
+		</Output>
+	</Node>
+	<Node id="7" instanceName="fully_connected11" type="Kernel">
+		<Input clock="STREAM" name="x01" type="PULL el=1 ael=2" width="320">
+			<Stream name="Stream_42" source="3" />
+		</Input>
+		<Input clock="STREAM" name="x11" type="PULL el=1 ael=2" width="320">
+			<Stream name="Stream_46" source="3" />
+		</Input>
+		<Output clock="STREAM" name="y01" type="PUSH 5" width="32">
+			<Stream name="Stream_13" sink="11" />
+		</Output>
+		<Output clock="STREAM" name="y11" type="PUSH 5" width="32">
+			<Stream name="Stream_19" sink="17" />
+		</Output>
+	</Node>
+	<Node id="11" instanceName="y01" type="OutputFlexibleClock">
+		<Input clock="STREAM" name="y01" type="PUSH 64" width="128">
+			<Stream name="Stream_12" source="7" />
+		</Input>
+	</Node>
+	<Node id="17" instanceName="y11" type="OutputFlexibleClock">
+		<Input clock="STREAM" name="y11" type="PUSH 64" width="128">
+			<Stream name="Stream_18" source="7" />
+		</Input>
+	</Node>
+</ManagerGraph>

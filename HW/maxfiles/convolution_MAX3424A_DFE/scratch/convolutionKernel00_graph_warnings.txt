@@ -1,0 +1,8 @@
+*** After kernel graph-pass 'Init Graph' ***
+node ">" (ID 124) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.gt(DFEVar.java:799)
+	convolution.convolutionKernel.<init>(convolutionKernel.maxj:167)
+	convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:72)
+	convolution.convolutionManager.main(convolutionManager.maxj:141)
+	

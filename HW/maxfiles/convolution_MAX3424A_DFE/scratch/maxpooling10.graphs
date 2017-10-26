@@ -1,0 +1,18 @@
+Thu Oct 26 21:06:00 BST 2017
+maxpooling10
+original
+maxpooling10_original.dot
+pre_dsp_extraction
+maxpooling10_pre_dsp_extraction.dot
+optimised
+maxpooling10_optimised.dot
+tapnfold_1
+maxpooling10_tapnfold_1.dot
+validated_fifos
+maxpooling10_validated_fifos.dot
+tapnfold_2
+maxpooling10_tapnfold_2.dot
+coalesced
+maxpooling10_coalesced.dot
+final
+maxpooling10_final.dot

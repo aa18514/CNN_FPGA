@@ -1,0 +1,18 @@
+Thu Oct 26 21:06:02 BST 2017
+fully_connected11
+original
+fully_connected11_original.dot
+pre_dsp_extraction
+fully_connected11_pre_dsp_extraction.dot
+optimised
+fully_connected11_optimised.dot
+tapnfold_1
+fully_connected11_tapnfold_1.dot
+validated_fifos
+fully_connected11_validated_fifos.dot
+tapnfold_2
+fully_connected11_tapnfold_2.dot
+coalesced
+fully_connected11_coalesced.dot
+final
+fully_connected11_final.dot

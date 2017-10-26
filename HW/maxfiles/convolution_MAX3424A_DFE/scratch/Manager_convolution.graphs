@@ -1,0 +1,14 @@
+Thu Oct 26 21:06:02 BST 2017
+Manager_convolution
+orig
+Manager_convolution_orig.dot
+schedstall
+Manager_convolution_schedstall.dot
+clockwidth
+Manager_convolution_clockwidth.dot
+dualaspect
+Manager_convolution_dualaspect.dot
+pullpush
+Manager_convolution_pullpush.dot
+final
+Manager_convolution_final.dot

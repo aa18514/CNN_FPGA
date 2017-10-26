@@ -60,13 +60,7 @@ void load_normalized_feature_maps(int normalization_constant, float*** dataset){
 		for(int p = 0; p < 1; p++){
 			for(int i = 0; i < 28; i++){
 				for(int j = 0; j < 28; j++){
-					float bigI = dataset[q + 2*p][i][j]/normalization_constant; 
-					int64_t result = 1; 
-					for(int k = 0; k < 32; k++){
-						result *= 2; 
-					}
-					int32_t small = (int32_t(result * bigI) & 0xF0000000) >> 28;
-					pointers[q][(28 * 28 * p) + (28 * i)  + j] = small; 
+					pointers[q][(28 * 28 * p) + (28 * i)  + j] = dataset[q + 2*p][i][j]/normalization_constant; 
 				}
 			}
 		}
@@ -75,10 +69,7 @@ void load_normalized_feature_maps(int normalization_constant, float*** dataset){
 
 void init_convolution(max_actions_t* actions, const char* name, int cycles, double* romcontents, double* bias, int channels, int depth, int row_size, int block_size, int t){
 	max_set_ticks(actions, name, cycles); 
-	int b = 0; 
-	if(block_size == 25){ 
-		b = 7; 
-	}
+	int b = (block_size == 25) ? 7 : 0;
 	for(int p = 0; p < channels; p++){
 		for(int j = 0; j < depth; j++){
 			for(int i = 0; i < row_size; i++){	
@@ -106,7 +97,6 @@ void init_convolution(max_actions_t* actions, const char* name, int cycles, doub
 							}
 						}
 					}
-					cout << constructed_memory_location << endl;
 					max_set_mem_double(actions, name, Result, j + depth * p, constructed_memory_location); 
 					/*
 					stringstream ss; 

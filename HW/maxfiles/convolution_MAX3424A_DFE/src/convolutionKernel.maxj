@@ -1,0 +1,186 @@
+package convolution;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory;
+import com.maxeler.maxcompiler.v2.utils.MathUtils; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Counter;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.WrapMode; 
+import data.data; 
+import utilities.tuple; 
+import block.mem_block; 
+import java.io.*; 
+import java.util.*;
+import fifo.fifo; 
+
+public class convolutionKernel extends Kernel{  
+	DFEVector<DFEVar> output_data, output_data1; 
+	DFEVar sliding_window_x_position, sliding_window_y_position, cycles_to_stall, init;
+	DFEVar write_en, Weights, total_count; 
+	int In, depth, numberOfFeatures, M, total_fil, channels, L, fold, filters;
+ 	DFEType Data_type, d; 	
+	Memory<DFEVar> bias;
+	
+	private DFEVar adder2Tree(DFEVector<DFEVar> list, int size){
+		int l = size/2;
+		int j = 0; 
+		if(size == 1){
+			return list[0];
+		}
+		else{
+			DFEVector<DFEVar> first_layer = new DFEVectorType<DFEVar> (Data_type, l).newInstance(this);
+			for(int i = 0; i < 2*l; i = i + 2, j = j + 1){
+				first_layer[j] <== list[i] + list[i+1];
+			}
+			if(size % 2 != 0){
+				return(list[size - 1] + adder2Tree(first_layer, l));  
+			}
+			else{
+				return(adder2Tree(first_layer, l));
+			}
+		}
+	}
+	
+	DFEVar[] get_kernel_position(mem_block[] weights, fifo[] x){
+		DFEVector<DFEVar> Kernel = new DFEVectorType<DFEVar> (Data_type, M).newInstance(this); 
+		DFEVar[] accumulator = new DFEVar[filters * L];  
+		data[] n = new data[filters]; 
+		int m = (int) Math.ceil(((double) M)/4); 
+		for(int i = 0; i < filters; i++){
+			n[i] = new data(this, M, Data_type); 
+		}
+		for(int l = 0; l < filters; l++){
+			for(int p = 0; p < M; p = p + 4)
+			{	
+				 
+				DFEVar read = weights[(p/4) + (m * l)].m.read(init.cast(dfeUInt(MathUtils.bitsToAddress(depth)))); 
+				for(int i = p; i < (p + 4) && i < M; i++){ 
+					DFEVar a = (read << ((i - p) * 16)).cast(dfeFix(16, 8, SignMode.TWOSCOMPLEMENT)); 
+					n[l].x[i] <== a.cast(d);  
+				} 
+			}
+		}
+		for(int l = 0; l < filters; l++){
+			for(int i = 0; i < L; i++){
+				accumulator[L*l + i] = adder2Tree(n[l].x * x[i].data, M); 
+			}
+		}
+		return accumulator; 
+	} 
+					
+	private void convolve_image_with_kernels(int number_of_filters, mem_block[] weights, fifo[] x){
+		DFEVar[] accumulated_results = new DFEVar[filters * L]; 
+		DFEVar write_en = (sliding_window_x_position === 0) & ((cycles_to_stall > (In - 1)) | (cycles_to_stall === In - 1)); 
+		data[] sums = new data[L]; 
+		DFEVar[] Carried_Sums = new DFEVar[L];
+		DFEVectorType<DFEVar> in = new DFEVectorType<DFEVar>(d, filters);
+		if(filters == 5){
+			init = sliding_window_x_position + cycles_to_stall; 
+		}
+		else{
+			init = (1 - sliding_window_x_position) + 2 * cycles_to_stall + 40*Weights; 
+		}	
+		for(int i = 0; i < L; i++){
+			sums[i] = new data(this, filters, d); 
+		} 
+		accumulated_results = get_kernel_position(weights, x); 
+		for(int l = 0; l < filters; l++)
+		{
+			for(int i = 0; i < L; i++)
+			{
+				Carried_Sums[i] = Data_type.newInstance(this);
+				DFEVar res = bias.read((cycles_to_stall * filters +  (Weights * total_fil) + l).cast(dfeUInt(MathUtils.bitsToAddress(channels * total_fil)))); 
+				DFEVar sum = write_en ? accumulated_results[L*l + i] : accumulated_results[L*l + i] + Carried_Sums[i];
+				sums[i]. x[l] <== sum + res; 
+				Carried_Sums[i].connect(stream.offset(sum, - channels * filters * fold)); 
+				
+			}
+		}
+		for(int i = 0; i < L; i++)
+		{
+			io.output("y" + i + "1", sums[i].x, in, write_en); 
+		}
+	}
+		
+	public convolutionKernel(KernelParameters parameters, int[] params, ArrayList<Integer> conv , DFEType data_type, int links, int j, DFEType conv_data_type)
+	{
+		super(parameters);    
+		Data_type = data_type; 
+		bias = mem.alloc(data_type, params[1] * 20); 
+		bias.mapToCPU("bias");
+		d = data_type; 
+		In = conv[5 + 6*j];
+		fold = conv[3 + 6 * j];
+		channels = params[1]; 
+		depth = params[0];
+		L = links; 
+		total_fil = 20; 
+		filters = conv[4 + 6*j]; 
+		M = conv[2 + 6*j];  
+		
+		Count.Params paramsThree = control.count.makeParams(16)
+		.withMax(channels); 
+		Counter counterThree = control.count.makeCounter(paramsThree); 
+
+		Count.Params paramsOne = control.count.makeParams(16)
+		.withMax(total_fil/filters) 
+		.withEnable(counterThree.getWrap()); 
+		Counter counterOne = control.count.makeCounter(paramsOne);
+ 	
+		Count.Params paramsTwo = control.count.makeParams(16) 
+		.withMax(fold)
+		.withEnable(counterOne.getWrap()); 
+		Counter counterTwo = control.count.makeCounter(paramsTwo); 
+	
+		DFEVectorType<DFEVar> in_data = new DFEVectorType<DFEVar> (data_type, fold * M); 
+		sliding_window_x_position = counterTwo.getCount();	
+		cycles_to_stall = counterOne.getCount(); 
+		Weights = counterThree.getCount();
+	 
+		mem_block[] weights = new mem_block[filters * (int) Math.ceil(((double) M)/4)];
+		System.out.println(filters * (int) Math.ceil((double)M/4));   
+		for(int i = 0; i < filters * (int) Math.ceil((double)M/4) ; i++){
+			weights[i] = new mem_block();
+			weights[i].m = mem.alloc(conv_data_type, depth); 
+			weights[i].m.mapToCPU("mappedRom" + i);   
+		} 
+		
+		data[] x = new data[links]; 
+		fifo[] x_a = new fifo[links]; 
+		
+		DFEVar read_en = (sliding_window_x_position === 0) & (cycles_to_stall < In) & (Weights === 0); 
+		
+		for(int i = 0; i < links; i++){ 
+			x[i] =   new data(this, M * fold, data_type); 
+			x_a[i] = new fifo(this, M, data_type);  
+			x[i].x = io.input("x" + i + "1", in_data, read_en); 
+		}	
+		
+		DFEVar shift = (sliding_window_x_position > 0); 	
+		if(M == 25){ 
+			for(int i = 0; i < 25; i++){
+				for(int Links = 0; Links < links; Links++){
+					x_a[Links].data[i] <== x[Links].x[i]; 
+				}
+			}
+		    }
+		else{
+			for(int i = 0; i < M; i++){
+				for(int Links  = 0; Links < links; Links++){
+					x_a[Links].data[i] <== shift & ((i + M) < (M * fold)) ? x[Links].x[i + M] : x[Links].x[i]; 
+				}
+			}
+		}  
+		convolve_image_with_kernels(M,weights, x_a); 		 
+			
+	}
+}
+		

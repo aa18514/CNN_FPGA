@@ -1,0 +1,2 @@
+SIM/obj/cifar10_reader.o: src/C_Code//cifar10_reader.cpp \
+ src/C_Code//cifar10_reader.h

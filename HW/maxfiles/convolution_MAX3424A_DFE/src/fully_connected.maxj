@@ -1,0 +1,125 @@
+package fully_connected; 
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Counter;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.WrapMode;  
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory;
+import com.maxeler.maxcompiler.v2.utils.MathUtils; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory; 
+import com.maxeler.maxcompiler.v2.utils.MathUtils; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import block.mem_block; 
+import data.data; 
+
+public class fully_connected extends Kernel{ 
+	/* data is streamed as follows: 
+		x1 x2 x3 x4 x5 
+		x1 x2 x3 x4 x5
+		.............
+		.............
+		x6 x7 x8 x9 x10
+		x6 x7 x8 x9 x10
+	*/
+
+
+	DFEType glob; 
+
+	private DFEVar adder2Tree(DFEVector<DFEVar> list, int size){
+		int half = size/2; 
+		int j = 0; 
+		if(size == 1){ 
+			return list[0]; 
+		}
+		else{
+			DFEVector<DFEVar> next_layer = new DFEVectorType<DFEVar> (glob, half).newInstance(this); 
+			for(int i = 0; i < size - 1; i = i + 2, j= j + 1){
+				next_layer[j] <== list[i] + list[i+1]; 
+			}
+			if(size % 2 != 0)
+				return(list[size - 1] + adder2Tree(next_layer, half)); 
+			else 
+				return(adder2Tree(next_layer, half));
+		}
+	}
+	
+	public fully_connected(KernelParameters parameters, int output_channels, int n_rblocks, int links, int pcie, DFEType T, int n_mult){
+		super(parameters); 
+		DFEVectorType<DFEVar> inC = new DFEVectorType<DFEVar> (T, n_mult); 
+		DFEVector<DFEVar> WEIGHTS_IN = inC.newInstance(this); 
+		mem_block[] weights = new mem_block[n_mult]; 
+		glob = T; 
+		
+		Count.Params paramsOne = control.count.makeParams(16)
+							.withMax(output_channels); 
+		
+		Counter countOne = control.count.makeCounter(paramsOne); 	
+		
+		Count.Params paramsTwo = control.count.makeParams(16) 
+							.withMax(n_rblocks)	
+							.withEnable(countOne.getWrap()); 
+		
+		Counter countTwo = control.count.makeCounter(paramsTwo); 
+
+		DFEVar currentWeight = countOne.getCount(); 
+		DFEVar temp = countTwo.getCount(); 
+		DFEVar read_enable = (currentWeight === 0);
+		DFEType out; 
+		if(pcie == 0){
+			out = T; 
+		}
+		else{
+			out = dfeFloat(8, 24);
+		}
+		data[] x = new data[links]; 
+		for(int i = 0; i < links; i++){
+			x[i] = new data(this, links, T); 
+			x[i].x = io.input("x" + i + "1", inC, read_enable); 
+		}
+
+		DFEVar currentMemoryAddress = currentWeight; 
+		Memory<DFEVar> bias = mem.alloc(T, output_channels); 
+		bias.mapToCPU("fully_connected_bias"); 
+
+		for(int i = 0; i < n_mult; i++){
+			weights[i] = new mem_block(); 
+			weights[i].m = mem.alloc(T, output_channels * n_rblocks);
+			weights[i].m.mapToCPU("mappedRom" + i); 
+		}
+ 
+		for(int i = 0; i < n_mult; i = i + 1){
+			DFEVar data = weights[i].m.read((n_rblocks*currentWeight + temp).cast(dfeUInt(MathUtils.bitsToAddress(output_channels * n_rblocks)))); 
+			WEIGHTS_IN[i] <== data; 
+		}	
+		
+		DFEVar write_en; 
+		if(pcie == 0)
+		{
+			write_en = (temp === n_rblocks - 1); 
+		} 
+		else
+		{
+			write_en = (temp === n_rblocks - 2) | (temp === n_rblocks - 1); 
+		} 
+		DFEVar cond = (currentWeight === 0) & (temp === 0);
+		for(int i = 0; i < links; i++){
+			DFEVar carry = T.newInstance(this); 
+			DFEVar partial_sum = T.newInstance(this); 
+			DFEVar sum = cond ? constant.var(0).cast(T) : carry; 
+			sum = sum + adder2Tree(WEIGHTS_IN * x[i].x, n_mult); 
+			carry.connect(stream.offset(sum, -output_channels)); 
+			DFEVar total = (sum + bias.read(currentWeight.cast(dfeUInt(MathUtils.bitsToAddress(output_channels))))).cast(out); 
+			DFEVar totalC; 
+			totalC = (total < 0) ? constant.var(0) :  total; 
+			io.output("y" + i + "1", totalC.cast(out), out, write_en); 
+		}
+	}; 
+
+
+}; 

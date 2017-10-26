@@ -1,0 +1,83 @@
+package secondlayer;
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;  
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType; 
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.Counter;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count;
+import data.data; 
+
+public class maxpooling extends Kernel
+{
+	private DFEVectorType<DFEVar> Kernel; 
+	private DFEVectorType<DFEVar> Kernelc; 
+	private DFEVectorType<DFEVar> chunk;
+	private DFEVectorType<DFEVar> KernelC; 
+	int channels; 
+	public DFEVector<DFEVar> maxPool(int maps,
+					DFEVector<DFEVar> in, 
+					 DFEVector<DFEVar> out1, 
+					 DFEVector<DFEVar> out2, 
+					 DFEVector<DFEVar> out3){ 
+	
+		DFEVector<DFEVar> result = chunk.newInstance(this);  
+		for(int i = 0; i < channels; i++){
+			DFEVar a = (in[i] > out1[i]) | (in[i] === out1[i]) ? in[i] : out1[i]; 
+			DFEVar b = (out2[i] > a) | (out2[i] === a) ? out2[i] : a; 
+			DFEVar c = (out3[i] > b) | (out3[i] === b) ? out3[i] : b; 
+			DFEVar d = (c < 0) ? constant.var(0) : c;
+			result[i] <== d; 
+		} 
+		return result;  
+	}
+
+	public maxpooling(KernelParameters parameters, int maps, int image_dimension, int links, int filter_size, DFEType T){
+		super(parameters);  
+		channels = filter_size; 
+		Count.Params a = control.count.makeParams(32)
+					.withMax(maps);
+		Counter a_c = control.count.makeCounter(a);
+		DFEVar cycles_to_stall= a_c.getCount();
+		
+		Count.Params b = control.count.makeParams(32)
+					.withMax(2)
+					.withEnable(a_c.getWrap());
+		Counter b_c = control.count.makeCounter(b);
+		DFEVar cycles2 = b_c.getCount();
+
+		Count.Params c = control.count.makeParams(32)
+					.withMax(image_dimension/2)
+					.withEnable(b_c.getWrap());
+		Counter c_c = control.count.makeCounter(c);
+		DFEVar orig_1 = c_c.getCount(); 
+		
+		Count.Params d = control.count.makeParams(32)
+					.withMax(2)
+					.withEnable(c_c.getWrap()); 
+		Counter d_c = control.count.makeCounter(d); 
+		DFEVar cycles = d_c.getCount();
+
+		Count.Params e = control.count.makeParams(32)
+					.withMax(image_dimension/2)
+					.withEnable(d_c.getWrap());
+		Counter e_c = control.count.makeCounter(e);
+		DFEVar orig = e_c.getCount(); 
+
+		chunk = new DFEVectorType<DFEVar> (T, filter_size);  
+		KernelC = new DFEVectorType<DFEVar> (T, filter_size); 
+		
+		DFEVar edges = (orig > 0 & orig_1 > 0 & orig < (image_dimension/2 - 1) & (orig_1 < (image_dimension/2 - 1)) & (cycles === 0) & (cycles2 === 0));
+		for(int j = 0; j < links; j++){
+			DFEVector<DFEVar> in = io.input("x" + j + 1, chunk).cast(KernelC); 
+			DFEVector<DFEVar> out1 = stream.offset(in, maps).cast(KernelC); 
+			DFEVector<DFEVar> out2 = stream.offset(in, maps*image_dimension).cast(KernelC); 
+			DFEVector<DFEVar> out3 = stream.offset(in, maps*(image_dimension + 1)).cast(KernelC); 
+			DFEVector<DFEVar> result = maxPool(maps, in, out1, out2, out3); 
+			io.output("y" + j + "1", result, chunk, edges);  
+		}
+	}
+}

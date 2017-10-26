@@ -1,0 +1,131 @@
+NodeCat @ {HWRawBits:64} ID: 148
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(547) {HWRawBits:64} 547 ID: 149
+
+NodeCat @ {HWRawBits:64} ID: 142
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(50) {HWRawBits:64} 50 ID: 143
+
+NodeCat @ {HWRawBits:64} ID: 154
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(47) {HWRawBits:64} 47 ID: 155
+
+NodeStreamOffset stream offset: 50 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 34
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+secondlayer.maxpooling.<init>(maxpooling.maxj:76)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 112
+
+NodeReinterpret <{HWOffsetFix:32, -24, TWOSCOMPLEMENT}> {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 145
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 136
+
+NodeStreamOffset stream offset: 50 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 67
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+secondlayer.maxpooling.<init>(maxpooling.maxj:76)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 125
+
+NodeReinterpret <{HWOffsetFix:32, -24, TWOSCOMPLEMENT}> {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 147
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 139
+
+NodeReinterpret <{HWOffsetFix:32, -24, TWOSCOMPLEMENT}> {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 151
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 137
+
+NodeStreamOffset stream offset: 600 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 36
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+secondlayer.maxpooling.<init>(maxpooling.maxj:77)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 117
+
+NodeReinterpret <{HWOffsetFix:32, -24, TWOSCOMPLEMENT}> {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 153
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 140
+
+NodeStreamOffset stream offset: 600 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 69
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+secondlayer.maxpooling.<init>(maxpooling.maxj:77)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 130
+
+NodeReinterpret <{HWOffsetFix:32, -24, TWOSCOMPLEMENT}> {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 157
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 138
+
+NodeStreamOffset stream offset: 650 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 38
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+secondlayer.maxpooling.<init>(maxpooling.maxj:78)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 121
+
+NodeReinterpret <{HWOffsetFix:32, -24, TWOSCOMPLEMENT}> {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 159
+com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+convolution.convolutionManager.main(convolutionManager.maxj:146)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 141
+
+NodeStreamOffset stream offset: 650 {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 71
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+secondlayer.maxpooling.<init>(maxpooling.maxj:78)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 2 ID: 134
+
+NodeMux MUX {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 51
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+secondlayer.maxpooling.maxPool(maxpooling.maxj:31)
+secondlayer.maxpooling.<init>(maxpooling.maxj:79)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 122
+
+NodeMux MUX {HWOffsetFix:32, -24, TWOSCOMPLEMENT} ID: 84
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+secondlayer.maxpooling.maxPool(maxpooling.maxj:31)
+secondlayer.maxpooling.<init>(maxpooling.maxj:79)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:32, -24, TWOSCOMPLEMENT} 1 ID: 135
+
+NodeEq == {HWOffsetFix:1, 0, UNSIGNED} ID: 26
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+secondlayer.maxpooling.<init>(maxpooling.maxj:73)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(4) {HWOffsetFix:1, 0, UNSIGNED} 4 ID: 109
+
+NodeEq == {HWOffsetFix:1, 0, UNSIGNED} ID: 23
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+secondlayer.maxpooling.<init>(maxpooling.maxj:73)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(3) {HWOffsetFix:1, 0, UNSIGNED} 3 ID: 108
+
+NodeLt < {HWOffsetFix:1, 0, UNSIGNED} ID: 20
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.lt(DFEVar.java:845)
+secondlayer.maxpooling.<init>(maxpooling.maxj:73)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(2) {HWOffsetFix:1, 0, UNSIGNED} 2 ID: 107
+
+NodeLt < {HWOffsetFix:1, 0, UNSIGNED} ID: 17
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.lt(DFEVar.java:845)
+secondlayer.maxpooling.<init>(maxpooling.maxj:73)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:73)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:1, 0, UNSIGNED} 1 ID: 106
+

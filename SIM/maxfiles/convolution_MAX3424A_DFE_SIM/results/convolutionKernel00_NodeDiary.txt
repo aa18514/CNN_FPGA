@@ -1,0 +1,1 @@
+../scratch/convolutionKernel00_NodeDiary.txt

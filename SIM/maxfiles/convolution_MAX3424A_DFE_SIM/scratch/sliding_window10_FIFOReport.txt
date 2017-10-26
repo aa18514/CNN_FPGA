@@ -1,0 +1,63 @@
+NodeAnd & {HWOffsetFix:1, 0, UNSIGNED} ID: 35
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:530)
+sliding_window.sliding_window.<init>(sliding_window.maxj:75)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(12) {HWOffsetFix:1, 0, UNSIGNED} 12 ID: 7600
+
+NodeOr | {HWOffsetFix:1, 0, UNSIGNED} ID: 24
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.or(DFEVar.java:418)
+sliding_window.sliding_window.<init>(sliding_window.maxj:72)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(11) {HWOffsetFix:1, 0, UNSIGNED} 11 ID: 7604
+
+NodeGt > {HWOffsetFix:1, 0, UNSIGNED} ID: 34
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.gt(DFEVar.java:799)
+sliding_window.sliding_window.<init>(sliding_window.maxj:75)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(4) {HWOffsetFix:1, 0, UNSIGNED} 4 ID: 7599
+
+NodeLt < {HWOffsetFix:1, 0, UNSIGNED} ID: 12
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.lt(DFEVar.java:845)
+sliding_window.sliding_window.<init>(sliding_window.maxj:72)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(4) {HWOffsetFix:1, 0, UNSIGNED} 4 ID: 7603
+
+NodeEq == {HWOffsetFix:1, 0, UNSIGNED} ID: 26
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+sliding_window.sliding_window.<init>(sliding_window.maxj:75)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:1, 0, UNSIGNED} 1 ID: 7597
+
+NodeCounterV1 Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0 {HWOffsetFix:1, 0, UNSIGNED} ID: 6
+com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounter(Count.java:388)
+sliding_window.sliding_window.<init>(sliding_window.maxj:50)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:1, 0, UNSIGNED} 1 ID: 7596
+
+NodeLt < {HWOffsetFix:1, 0, UNSIGNED} ID: 31
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.lt(DFEVar.java:845)
+sliding_window.sliding_window.<init>(sliding_window.maxj:75)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:1, 0, UNSIGNED} 1 ID: 7598
+
+NodeLt < {HWOffsetFix:1, 0, UNSIGNED} ID: 14
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.lt(DFEVar.java:845)
+sliding_window.sliding_window.<init>(sliding_window.maxj:73)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:1, 0, UNSIGNED} 1 ID: 7601
+
+NodeEq == {HWOffsetFix:1, 0, UNSIGNED} ID: 22
+com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+sliding_window.sliding_window.<init>(sliding_window.maxj:73)
+convolution.convolutionManager.interfaceDefault(convolutionManager.maxj:75)
+convolution.convolutionManager.main(convolutionManager.maxj:141)
+	FIFO(1) {HWOffsetFix:1, 0, UNSIGNED} 1 ID: 7602
+
