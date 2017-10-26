@@ -1,2 +1,0 @@
-SIM/obj/mnist_image_reader.o: src/C_Code//mnist_image_reader.cpp \
- src/C_Code//mnist_image_reader.h

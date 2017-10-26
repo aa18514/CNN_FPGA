@@ -1,1 +1,0 @@
-../scratch/sliding_window00_Configuration.txt

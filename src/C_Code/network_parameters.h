@@ -10,7 +10,7 @@ class network_parameters{
 		double fully_connected[500 *800];
 		double fully_connected2[10 * 500]; 
 		double bias[20];
-		
+		double bias2[20];		
 		double final_bias[10]; 
 		double fully_connected_bias[500]; 
 };

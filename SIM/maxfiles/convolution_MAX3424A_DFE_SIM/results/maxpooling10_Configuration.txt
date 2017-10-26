@@ -1,1 +1,0 @@
-../scratch/maxpooling10_Configuration.txt

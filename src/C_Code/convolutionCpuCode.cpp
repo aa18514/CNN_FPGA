@@ -18,7 +18,7 @@
 #include "Maxfiles.h"
 #include "MaxSLiCInterface.h"
 
-void perform_convolution_and_maxpooling(float* result, float* result2, double* romcontents, double* romcontents2, double* biases, int* first_set, int* second_set, double* fully_connected, double* second_fully_connected, double* final_bias, double* first_fully_connected_bias); 	
+void perform_convolution_and_maxpooling(float* result, float* result2, double* romcontents, double* romcontents2, double* bias, double* bias2, int* first_set, int* second_set, double* fully_connected, double* second_fully_connected, double* final_bias, double* first_fully_connected_bias); 	
 void read_results_from_lmem(float* result, float* first_set); 
 void display_results(float* filter); 
 void load_normalized_feature_maps(int normalization_constant, float*** dataset); 
@@ -39,6 +39,7 @@ int main()
         network_parameters LeNet("/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/conv1.txt", 
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/conv2.txt",
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/bias1.txt", 
+				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/bias2.txt",
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/test.txt",
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/final.txt", 
 				"/mnt/data/cccad3/aa18514/latest_conv_net/full1/final/src/C_Code/weights/final_bias.txt",
@@ -136,14 +137,14 @@ void init_fully_connected(max_actions_t* actions, const char* name, int cycles, 
 }  
 		
 
-void perform_convolution_and_maxpooling(float* result, float* result2, double* romcontents, double* romcontents2, double* bias, int* first_set, int* second_set, double* fully_connected, double* second_fully_connected, double* final_bias, double* fully_connected_bias){
+void perform_convolution_and_maxpooling(float* result, float* result2, double* romcontents, double* romcontents2, double* bias, double* bias2, int* first_set, int* second_set, double* fully_connected, double* second_fully_connected, double* final_bias, double* fully_connected_bias){
 	max_file_t* mavMaxFile = convolution_init();
 	max_engine_t* engine = max_load(mavMaxFile, "local:*"); 
 	max_actions_t* actions = max_actions_init(mavMaxFile, "default");
 	max_queue_input(actions, "x01", first_set,  3136);  
 	max_queue_input(actions, "x11", second_set, 3136);	
 	init_convolution(actions, "convolutionKernel00",  4 * 28 * 28 * 1 * 1, romcontents, bias, 1, 4, 5, 25, 24); 
-	init_convolution(actions, "convolutionKernel10",  20 * 50 * 12 * 12 * 1 * 2, romcontents2, romcontents, 50, 40, 1, 20, 4);
+	init_convolution(actions, "convolutionKernel10",  20 * 50 * 12 * 12 * 1 * 2, romcontents2, bias2, 50, 40, 1, 20, 4);
 	init_fully_connected(actions, "fully_connected01",  40000, fully_connected, fully_connected_bias, 40000,500); 
 	init_fully_connected(actions, "fully_connected11",  500,  second_fully_connected, final_bias, 500, 10); 
 	max_set_ticks(actions, "maxpooling10", 12 *50* 12);

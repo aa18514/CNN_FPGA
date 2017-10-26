@@ -1,1 +1,0 @@
-../scratch/convolutionKernel10_Configuration.txt

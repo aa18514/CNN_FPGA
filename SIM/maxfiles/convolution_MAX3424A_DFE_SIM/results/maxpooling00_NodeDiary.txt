@@ -1,1 +1,0 @@
-../scratch/maxpooling00_NodeDiary.txt

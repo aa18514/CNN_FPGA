@@ -1,2 +1,0 @@
-SIM/obj/network_parameters.o: src/C_Code//network_parameters.cpp \
- src/C_Code//network_parameters.h
